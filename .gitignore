@@ -2,3 +2,6 @@ node_modules/
 bootstrap-icons-1.10.5/
 .env
 dist/
+
+# Local Netlify folder
+.netlify

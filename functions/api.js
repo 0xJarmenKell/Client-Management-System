@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app =  express();
+const router = express.Router();
+const serverless = require('serverless-http');
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
-const User = require('./models/UserSchema');
+const User = require('../models/UserSchema');
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 let moment = require('moment');
@@ -100,4 +102,8 @@ app.delete('/delete/:id', (req, res) => {
   console.log(err);
  });
 });
+
+
+app.use('./netlify/functions/api', router);
+module.exports.handler = serverless(app);
 
